@@ -6,24 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Records Management</title>
 
-    <!-- Booststrap CDN -->
+    <!-- Bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <!-- Local style  -->
-    <link rel="stylesheet" href="style.css">
 
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-
-    <div class="container d-flex g-1 h-50">
-        <div class="left w-50">
-            <main class="form-signin w-50 m-auto">
-
-                <form class="d-flex flex-column gap-2" id="myForm">
+    <div class="container d-flex flex-wrap g-4">
+        <!-- Left Section: Form -->
+        <div class="left w-50 p-4">
+            <main class="form-signin w-100">
+                <h3 class="form-header">Add Employee</h3>
+                <form class="d-flex flex-column gap-3" id="myForm">
                     <input type="hidden" id="editEmpId">
 
                     <div class="form-floating">
@@ -41,30 +40,28 @@
                         <label for="floatingSalary">Salary</label>
                     </div>
 
-                    <button class="btn btn-primary w-100 py-2" type="button" onclick="createRecord()" id="createRec">Create Record</button>
+                    <button class="btn btn-primary w-100 py-2" type="button" onclick="createRecord()"
+                        id="createRec">Create Record</button>
                 </form>
             </main>
         </div>
-        <div class="right w-50">
-            <img src="https://miro.medium.com/v2/resize:fit:4800/format:webp/1*kRc2KsunrMMM2Spba2CYaQ.png" alt="">
+
+        <!-- Right Section: Image -->
+        <div class="right w-50 p-4">
+            <img src="https://miro.medium.com/v2/resize:fit:4800/format:webp/1*kRc2KsunrMMM2Spba2CYaQ.png"
+                alt="Employee Management">
         </div>
     </div>
 
+    <!-- Records Section -->
     <div class="records container">
-        
-        
         <h1 class="text-center">Employee Records</h1>
         <hr>
-
-
-        <table class="table table-hover">
+        <table class="table table-hover table-striped">
         </table>
-
     </div>
 
-
-    <!-- Bootstrap JS links -->
-
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
@@ -72,7 +69,7 @@
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
 
-    <!-- Local JS file -->
+    <!-- Local JS -->
     <script src="./script.js"></script>
 </body>
 
