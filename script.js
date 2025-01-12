@@ -11,8 +11,6 @@ let myForm = document.getElementById('myForm');
 let isEdit = false;
 
 
-
-
 let getEmpData = () => {
     return JSON.parse(localStorage.getItem('empDataArr')) || [];
 }
@@ -23,33 +21,38 @@ let empDataArr = [];
 let createRecord = () => {
 
 
-    if (edit) {
+    if (isEdit) {
 
         let updateEmpRec = {
+            empId: parseInt(document.getElementById('editEmpId').value), 
             empName: eName.value,
             empDept: department.value,
             empSalary: salary.value
         }
 
-        
 
+        let records = getEmpData();
+        records = records.map(ele => (ele.empId == updateEmpRec.empId) ? updateEmpRec : ele);
+        localStorage.setItem('empDataArr', JSON.stringify(records));
+        isEdit = false;
+        empDataArr = getEmpData();
 
 
     } else {
 
-    let empObj = {
-        empId: empDataArr.length == 0 ? 1 : empDataArr.length + 1,
-        empName: eName.value,
-        empDept: department.value,
-        empSalary: salary.value
+        let empObj = {
+            empId: empDataArr.length == 0 ? 1 : empDataArr.length + 1,
+            empName: eName.value,
+            empDept: department.value,
+            empSalary: salary.value
+        }
+
+        empDataArr.push(empObj);
+        localStorage.setItem('empDataArr', JSON.stringify(empDataArr));
+
     }
 
-    empDataArr.push(empObj);
 
-    }
-
-
-    localStorage.setItem('empDataArr', JSON.stringify(empDataArr));
 
     myForm.reset();
     viewRec();
@@ -67,22 +70,19 @@ let deleteRec = (id) => {
 }
 
 
+
 let editRec = (id) => {
-
-
     isEdit = true;
+
     let empRec = getEmpData();
+    let singleRecord = empRec.find(ele => ele.empId == id);
 
-    let singleRecord = empRec.filter(ele => ele.empId == id);
-
-    console.log(singleRecord);
-
-    eName.value = singleRecord[0].empName;
-    department.value = singleRecord[0].empDept;
-    salary.value = singleRecord[0].empSalary;
-
-
+    document.getElementById('editEmpId').value = id; 
+    eName.value = singleRecord.empName;
+    department.value = singleRecord.empDept;
+    salary.value = singleRecord.empSalary;
 };
+
 
 
 
@@ -102,8 +102,8 @@ let viewRec = () => {
         <td>${empRec.empDept}</td>
         <td>${empRec.empSalary}</td>
         <td>
-           <button onclick="editRec(${empRec.empId})">Edit</button>
-           <button onclick="deleteRec(${empRec.empId})">Delete</button>
+           <button class="btn btn-primary"  onclick="editRec(${empRec.empId})">Edit</button>
+           <button class="btn btn-primary"  onclick="deleteRec(${empRec.empId})">Delete</button>
         </td>
         `;
     })
